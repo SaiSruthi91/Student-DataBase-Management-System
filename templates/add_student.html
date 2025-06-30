@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Student</title>
+    <style>
+        label { display: block; margin-top: 10px; }
+        input[type="text"], input[type="email"], input[type="date"] { width: 400px; padding: 4px; }
+        .section { margin: 20px 0; }
+    </style>
+</head>
+<body>
+    <h2>Add Student</h2>
+    <form method="POST" enctype="multipart/form-data">
+        <label>Name: <input type="text" name="name" required></label>
+        <label>Email: <input type="email" name="email" required></label>
+        <label>Phone: <input type="text" name="phone" required></label>
+        <label>Hallticket: <input type="text" name="hallticket" required></label>
+        <label>Date of Birth: <input type="date" name="dob" required></label>
+        <label>Address: <input type="text" name="address" required></label>
+        <label>Profile Pic: <input type="file" name="profile_pic" required></label>
+
+        <label>10th Hallticket: <input type="text" name="tenth_htno"></label>
+        <label>10th Result: <input type="text" name="tenth_result"></label>
+        <label>12th Hallticket: <input type="text" name="twelfth_htno"></label>
+        <label>12th Result: <input type="text" name="twelfth_result"></label>
+        <label>Year: <input type="text" name="year"></label>
+        <label>Branch: <input type="text" name="branch"></label>
+        <label>Date of Joining: <input type="date" name="doj"></label>
+
+        <div class="section">
+            <h3>Semester Results</h3>
+            <label>1-1 GPA: <input type="text" name="sem_1_1"></label>
+            <label>1-2 GPA: <input type="text" name="sem_1_2"></label>
+            <label>2-1 GPA: <input type="text" name="sem_2_1"></label>
+            <label>2-2 GPA: <input type="text" name="sem_2_2"></label>
+            <label>3-1 GPA: <input type="text" name="sem_3_1"></label>
+            <label>3-2 GPA: <input type="text" name="sem_3_2"></label>
+            <label>4-1 GPA: <input type="text" name="sem_4_1"></label>
+            <label>4-2 GPA: <input type="text" name="sem_4_2"></label>
+        </div>
+
+        <div class="section">
+            <h3>Subjects (1-1)</h3>
+            <label><input name="s11_1" placeholder="Communicative English"></label>
+            <label><input name="s11_2" placeholder="Mathematics - I"></label>
+            <label><input name="s11_3" placeholder="Applied Physics"></label>
+            <label><input name="s11_4" placeholder="Programming in C"></label>
+            <label><input name="s11_5" placeholder="Engineering Drawing"></label>
+            <label><input name="s11_6" placeholder="English Communication Skills Lab"></label>
+            <label><input name="s11_7" placeholder="C Lab"></label>
+            <label><input name="s11_8" placeholder="Applied Chemistry Lab"></label>
+            <label><input name="s11_9" placeholder="Computer Engineering Workshop"></label>
+        </div>
+
+        <div class="section">
+            <h3>Subjects (1-2)</h3>
+            <label><input name="s12_1" placeholder="Mathematics - II"></label>
+            <label><input name="s12_2" placeholder="Applied Physics"></label>
+            <label><input name="s12_3" placeholder="Data Structures"></label>
+            <label><input name="s12_4" placeholder="Digital Logic Design"></label>
+            <label><input name="s12_5" placeholder="Python Programming"></label>
+            <label><input name="s12_6" placeholder="Data Structures Lab"></label>
+            <label><input name="s12_7" placeholder="Applied Physics Lab"></label>
+            <label><input name="s12_8" placeholder="Python Programming Lab"></label>
+        </div>
+
+        <div class="section">
+            <h3>Subjects (2-1)</h3>
+            {% for i in range(1, 10) %}
+            <label><input name="s21_{{ i }}" placeholder="Subject {{ i }}"></label>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>Subjects (2-2)</h3>
+            {% for i in range(1, 10) %}
+            <label><input name="s22_{{ i }}" placeholder="Subject {{ i }}"></label>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>Subjects (3-1)</h3>
+            {% for i in range(1, 11) %}
+            <label><input name="s31_{{ i }}" placeholder="Subject {{ i }}"></label>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>Subjects (3-2)</h3>
+            {% for i in range(1, 11) %}
+            <label><input name="s32_{{ i }}" placeholder="Subject {{ i }}"></label>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>Subjects (4-1)</h3>
+            {% for i in range(1, 9) %}
+            <label><input name="s41_{{ i }}" placeholder="Subject {{ i }}"></label>
+            {% endfor %}
+        </div>
+
+        <div class="section">
+            <h3>Subjects (4-2)</h3>
+            <label><input name="s42_1" placeholder="Major Project & Seminar"></label>
+        </div>
+
+        <button type="submit">Add Student</button>
+    </form>
+</body>
+</html>

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Student</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 30px;
+            background-color: #f4f4f4;
+        }
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="date"] {
+            width: 400px;
+            padding: 6px;
+            margin-top: 4px;
+        }
+        .section {
+            background: white;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+        h2, h3 {
+            color: #333;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h2>Edit Student</h2>
+
+    {% set subjects = {
+        's11': ['Communicative English', 'Mathematics - I', 'Applied Physics', 'Programming for Problem Solving using C',
+                'Engineering Drawing', 'English Communication Skills Lab', 'Programming in C Lab', 'Applied Chemistry Lab', 'Computer Engineering Workshop'],
+        's12': ['Mathematics - II', 'Applied Physics', 'Data Structures', 'Digital Logic Design', 'Python Programming',
+                'Data Structures Lab', 'Applied Physics Lab', 'Python Programming Lab'],
+        's21': ['Mathematics - III', 'Mathematical Foundations of CS', 'DBMS', 'OOP with Java', 'Indian Traditional Knowledge',
+                'DBMS Lab', 'Java Lab', 'Universal Human Values', 'Industrial Internship (2 Months)'],
+        's22': ['Probability & Statistics', 'Formal Languages & Automata', 'MEFA', 'Computer Organization', 'Data Warehousing & Mining',
+                'Java Programming Lab', 'Data Mining using Python Lab', 'Web App Dev using Full Stack', 'Mongo DB'],
+        's31': ['Employability Skills - I', 'Research in OR', 'Compiler Design', 'Artificial Intelligence', 'Machine Learning',
+                'Cloud Computing', 'AI Lab', 'ML Lab', 'Data Science using Python (SOC-III)', 'Industrial Internship (3 Months)'],
+        's32': ['Employability Skills - II', 'Software Engineering', 'Computer Networks', 'Design & Analysis of Algorithms',
+                'Software Project Management', 'Deep Learning', 'Data Analytics using Python (SOC-IV)',
+                'Big Data Analytics Lab', 'Computer Networks Lab', 'Deep Learning & TensorFlow Lab'],
+        's41': ['Universal Human Values - II', 'Internet of Things', 'Microprocessors & Microcontrollers',
+                'Comm. Principles & IoT Apps', 'Cloud Computing', 'Blockchain Technologies', 'Blockchain with Go', 'Industrial Internship (2 Months)'],
+        's42': ['Major Project & Seminar']
+    } %}
+
+    <form method="POST">
+
+        <div class="section">
+            <h3>Personal Details</h3>
+            <label>Name: <input type="text" name="name" value="{{ student.name }}"></label>
+            <label>Email: <input type="email" name="email" value="{{ student.email }}"></label>
+            <label>Phone: <input type="text" name="phone" value="{{ student.phone }}"></label>
+            <label>Hallticket: <input type="text" name="hallticket" value="{{ student.hallticket }}"></label>
+            <label>Date of Birth: <input type="date" name="dob" value="{{ student.dob }}"></label>
+            <label>Address: <input type="text" name="address" value="{{ student.address }}"></label>
+        </div>
+
+        <div class="section">
+            <h3>Academic Details</h3>
+            <label>10th Hallticket: <input type="text" name="tenth_htno" value="{{ student.tenth_htno }}"></label>
+            <label>10th Result: <input type="text" name="tenth_result" value="{{ student.tenth_result }}"></label>
+            <label>12th Hallticket: <input type="text" name="twelfth_htno" value="{{ student.twelfth_htno }}"></label>
+            <label>12th Result: <input type="text" name="twelfth_result" value="{{ student.twelfth_result }}"></label>
+            <label>Year: <input type="text" name="year" value="{{ student.year }}"></label>
+            <label>Branch: <input type="text" name="branch" value="{{ student.branch }}"></label>
+            <label>Date of Joining: <input type="date" name="doj" value="{{ student.doj }}"></label>
+        </div>
+
+        <div class="section">
+            <h3>Semester Results</h3>
+            {% for sem in ['sem_1_1','sem_1_2','sem_2_1','sem_2_2','sem_3_1','sem_3_2','sem_4_1','sem_4_2'] %}
+                <label>{{ sem }}: <input type="text" name="{{ sem }}" value="{{ student[sem] }}"></label>
+            {% endfor %}
+        </div>
+
+       {% for sem, names in subjects.items() %}
+    {% set sem_code = sem | replace('s', '') %}
+    <div class="section">
+        <h3>Subjects ({{ sem_code[0] }}-{{ sem_code[1:] }})</h3>
+        {% for i in range(0, names | length) %}
+            <div style="margin-top: 10px;">
+                <label>{{ names[i] }}</label>
+                <input type="text" name="{{ sem }}_{{ i+1 }}" value="{{ student[sem ~ '_' ~ (i+1)|string] }}">
+            </div>
+        {% endfor %}
+    </div>
+{% endfor %}
+
+
+        <button type="submit">Update Student</button>
+    </form>
+</body>
+</html>
