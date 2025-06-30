@@ -7,10 +7,12 @@ from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
-app.config['UPLOAD_FOLDER'] = 'static/uploads'
 DB_PATH = 'db/student_db.sqlite3'
 
+# Folder to store profile pictures
+app.config['UPLOAD_FOLDER'] = 'static/images'
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
+
 
 def get_db_connection():
     conn = sqlite3.connect(DB_PATH)
@@ -53,58 +55,24 @@ def edit_student(id):
     if request.method == 'POST':
         form = request.form
         image = request.files.get('profile_pic')
+        filename = student['profile_pic'] or 'default.png'
 
-        # Image handling
         if image and image.filename != '':
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-        else:
-            filename = student['profile_pic']  # Keep existing image
 
-        conn.execute('''UPDATE students SET
-            name=?, email=?, phone=?, hallticket=?, dob=?, address=?, profile_pic=?, password=?,
-            tenth_htno=?, tenth_result=?, twelfth_htno=?, twelfth_result=?, year=?, branch=?, doj=?,
-            sem_1_1=?, sem_1_2=?, sem_2_1=?, sem_2_2=?, sem_3_1=?, sem_3_2=?, sem_4_1=?, sem_4_2=?,
-            s11_1=?, s11_2=?, s11_3=?, s11_4=?, s11_5=?, s11_6=?, s11_7=?, s11_8=?, s11_9=?,
-            s12_1=?, s12_2=?, s12_3=?, s12_4=?, s12_5=?, s12_6=?, s12_7=?, s12_8=?,
-            s21_1=?, s21_2=?, s21_3=?, s21_4=?, s21_5=?, s21_6=?, s21_7=?, s21_8=?, s21_9=?,
-            s22_1=?, s22_2=?, s22_3=?, s22_4=?, s22_5=?, s22_6=?, s22_7=?, s22_8=?, s22_9=?,
-            s31_1=?, s31_2=?, s31_3=?, s31_4=?, s31_5=?, s31_6=?, s31_7=?, s31_8=?, s31_9=?, s31_10=?,
-            s32_1=?, s32_2=?, s32_3=?, s32_4=?, s32_5=?, s32_6=?, s32_7=?, s32_8=?, s32_9=?, s32_10=?,
-            s41_1=?, s41_2=?, s41_3=?, s41_4=?, s41_5=?, s41_6=?, s41_7=?, s41_8=?,
-            s42_1=?
+        conn.execute('''
+            UPDATE students SET
+                name=?, email=?, phone=?, hallticket=?, dob=?, address=?,
+                profile_pic=?, password=?, tenth_htno=?, tenth_result=?,
+                twelfth_htno=?, twelfth_result=?, year=?, branch=?, doj=?
             WHERE id=?
         ''', (
-            form.get('name',''), form.get('email',''), form.get('phone',''), form.get('hallticket',''), form.get('dob',''), form.get('address',''),
-            filename, form.get('hallticket',''),  # profile_pic and password both updated
-            form.get('tenth_htno',''), form.get('tenth_result',''), form.get('twelfth_htno',''), form.get('twelfth_result',''),
-            form.get('year',''), form.get('branch',''), form.get('doj',''),
-
-            form.get('sem_1_1',''), form.get('sem_1_2',''), form.get('sem_2_1',''), form.get('sem_2_2',''),
-            form.get('sem_3_1',''), form.get('sem_3_2',''), form.get('sem_4_1',''), form.get('sem_4_2',''),
-
-            form.get('s11_1',''), form.get('s11_2',''), form.get('s11_3',''), form.get('s11_4',''), form.get('s11_5',''),
-            form.get('s11_6',''), form.get('s11_7',''), form.get('s11_8',''), form.get('s11_9',''),
-
-            form.get('s12_1',''), form.get('s12_2',''), form.get('s12_3',''), form.get('s12_4',''),
-            form.get('s12_5',''), form.get('s12_6',''), form.get('s12_7',''), form.get('s12_8',''),
-
-            form.get('s21_1',''), form.get('s21_2',''), form.get('s21_3',''), form.get('s21_4',''),
-            form.get('s21_5',''), form.get('s21_6',''), form.get('s21_7',''), form.get('s21_8',''), form.get('s21_9',''),
-
-            form.get('s22_1',''), form.get('s22_2',''), form.get('s22_3',''), form.get('s22_4',''),
-            form.get('s22_5',''), form.get('s22_6',''), form.get('s22_7',''), form.get('s22_8',''), form.get('s22_9',''),
-
-            form.get('s31_1',''), form.get('s31_2',''), form.get('s31_3',''), form.get('s31_4',''), form.get('s31_5',''),
-            form.get('s31_6',''), form.get('s31_7',''), form.get('s31_8',''), form.get('s31_9',''), form.get('s31_10',''),
-
-            form.get('s32_1',''), form.get('s32_2',''), form.get('s32_3',''), form.get('s32_4',''), form.get('s32_5',''),
-            form.get('s32_6',''), form.get('s32_7',''), form.get('s32_8',''), form.get('s32_9',''), form.get('s32_10',''),
-
-            form.get('s41_1',''), form.get('s41_2',''), form.get('s41_3',''), form.get('s41_4',''),
-            form.get('s41_5',''), form.get('s41_6',''), form.get('s41_7',''), form.get('s41_8',''),
-
-            form.get('s42_1',''), id
+            form.get('name',''), form.get('email',''), form.get('phone',''), form.get('hallticket',''),
+            form.get('dob',''), form.get('address',''), filename, form.get('hallticket',''),
+            form.get('tenth_htno',''), form.get('tenth_result',''),
+            form.get('twelfth_htno',''), form.get('twelfth_result',''),
+            form.get('year',''), form.get('branch',''), form.get('doj',''), id
         ))
         conn.commit()
         conn.close()
@@ -120,15 +88,14 @@ def add_student():
 
     if request.method == 'POST':
         form = request.form
-        hallticket = form.get('hallticket', '')  
-
-        # Handle image upload
-        image = request.files['profile_pic']
+        hallticket = form.get('hallticket', '')
+        image = request.files.get('profile_pic')
+        
         if image and image.filename != '':
             filename = secure_filename(image.filename)
             image.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
         else:
-            filename = 'default.png'  # Or leave blank if no image provided
+            filename = 'default.png'
 
         conn = get_db_connection()
         conn.execute('''
@@ -152,13 +119,14 @@ def add_student():
             form.get('year', ''),
             form.get('branch', ''),
             form.get('doj', ''),
-            hallticket  
+            hallticket
         ))
         conn.commit()
         conn.close()
         return redirect('/admin_dashboard')
 
     return render_template('add_student.html')
+
 
 
 @app.route('/student_login', methods=['GET', 'POST'])

@@ -61,7 +61,8 @@
 <a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
 
 <table class="profile-table">
-    <tr><th>HTNO</th><td>{{ student.hallticket }}</td><th>Name</th><td>{{ student.name }}</td><td rowspan="6" style="text-align:center"><img src="{{ url_for('static', filename='uploads/' + student['profile_pic']) }}" class="profile-photo"></td></tr>
+    <tr><th>HTNO</th><td>{{ student.hallticket }}</td><th>Name</th><td>{{ student.name }}</td><td rowspan="6" style="text-align:center"><img src="{{ url_for('static', filename='images/' + student['profile_pic']) }}" class="profile-photo">
+</td></tr>
     <tr><th>Course</th><td>{{ student.branch }}</td><th>Email</th><td>{{ student.email }}</td></tr>
     <tr><th>Phone</th><td>{{ student.phone }}</td><th>DOB</th><td>{{ student.dob }}</td></tr>
     <tr><th>Address</th><td colspan="3">{{ student.address }}</td></tr>

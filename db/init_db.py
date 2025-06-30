@@ -28,6 +28,15 @@ CREATE TABLE IF NOT EXISTS students (
     profile_pic TEXT,
     password TEXT,
 
+    sem_1_1 TEXT,
+    sem_1_2 TEXT,
+    sem_2_1 TEXT,
+    sem_2_2 TEXT,
+    sem_3_1 TEXT,
+    sem_3_2 TEXT,
+    sem_4_1 TEXT,
+    sem_4_2 TEXT,
+
     s11_1 TEXT, s11_2 TEXT, s11_3 TEXT, s11_4 TEXT, s11_5 TEXT, s11_6 TEXT, s11_7 TEXT, s11_8 TEXT, s11_9 TEXT,
     credits_s11 REAL, sgpa_s11 REAL,
 
