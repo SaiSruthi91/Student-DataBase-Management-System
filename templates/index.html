@@ -7,7 +7,7 @@
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gray-100">
 
-  <div class="flex w-[700px] h-[400px] bg-white rounded-2xl shadow-2xl overflow-hidden">
+  <div id="card" class="flex w-[700px] h-[400px] bg-white rounded-2xl shadow-2xl overflow-hidden transform transition-all duration-[1500ms] ease-in-out">
     
     <!-- Left Side (Purple Background) -->
     <div class="w-1/2 bg-purple-500 flex flex-col justify-center items-center text-white p-8">
@@ -17,18 +17,34 @@
 
     <!-- Right Side (Buttons) -->
     <div class="w-1/2 flex flex-col justify-center p-8 space-y-4">
-      <a href="/student_login">
-        <button class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded-lg transition">
-          Student Login
-        </button>
-      </a>
-      <a href="/admin_login">
-        <button class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded-lg transition">
-          Admin Login
-        </button>
-      </a>
+      <button id="studentBtn" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded-lg transition">
+        Student Login
+      </button>
+      <button id="adminBtn" class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded-lg transition">
+        Admin Login
+      </button>
     </div>
   </div>
+
+  <script>
+    const card = document.getElementById('card');
+    const studentBtn = document.getElementById('studentBtn');
+    const adminBtn = document.getElementById('adminBtn');
+
+    studentBtn.addEventListener('click', () => {
+      card.classList.add('-translate-x-[800px]', 'opacity-0');
+      setTimeout(() => {
+        window.location.href = '/student_login';
+      }, 1500); 
+    });
+
+    adminBtn.addEventListener('click', () => {
+      card.classList.add('translate-x-[800px]', 'opacity-0');
+      setTimeout(() => {
+        window.location.href = '/admin_login';
+      }, 1500); 
+    });
+  </script>
 
 </body>
 </html>

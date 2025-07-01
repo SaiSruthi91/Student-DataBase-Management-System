@@ -4,33 +4,64 @@
     <meta charset="UTF-8">
     <title>Student Login</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        overflow: hidden;
+      }
+    </style>
 </head>
 <body class="min-h-screen flex items-center justify-center bg-gray-100">
-    <div class="flex w-[700px] h-[400px] bg-white rounded-2xl shadow-2xl overflow-hidden">
-        <div class="w-1/2 bg-purple-500 flex flex-col justify-center items-center text-white p-8">
-            <h2 class="text-3xl font-bold mb-2">Hello, Welcome!</h2>
-            <p class="text-sm">Student Portal</p>
-        </div>
-        <div class="w-1/2 flex flex-col justify-center p-8">
-            <h2 class="text-2xl font-bold text-center mb-6">Student Login</h2>
-            <form method="post"  action="/student_login" class="space-y-4">
-                <div>
-                    <input type="email" name="email" placeholder="Email" required 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+
+    <div id="page" class="min-h-screen w-full flex items-center justify-center transform translate-x-full transition-all duration-[1500ms] ease-in-out">
+        
+        <div class="flex w-[700px] h-[400px] bg-white rounded-2xl shadow-2xl overflow-hidden">
+        
+            <div class="w-1/2 bg-purple-500 flex flex-col justify-center items-center text-white p-8">
+                <h2 class="text-3xl font-bold mb-2">Hello, Welcome!</h2>
+                <p class="text-sm">Student Portal</p>
+            </div>
+
+            <div class="w-1/2 flex flex-col justify-center p-8">
+                <h2 class="text-2xl font-bold text-center mb-6">Student Login</h2>
+                <form method="post" action="/student_login" class="space-y-4">
+                    <div>
+                        <input type="email" name="email" placeholder="Email" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <div>
+                        <input type="password" name="password" placeholder="Password (DDMM)" required 
+                               class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
+                    </div>
+                    <button type="submit" 
+                            class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded-lg transition">
+                        Login
+                    </button>
+                </form>
+                <div class="mt-4 text-center">
+                    <button id="backBtn" class="text-purple-600 hover:underline">Back to Home</button>
                 </div>
-                <div>
-                    <input type="password" name="password" placeholder="Password (DDMM)" required 
-                           class="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500">
-                </div>
-                <button type="submit" 
-                        class="w-full bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 rounded-lg transition">
-                    Login
-                </button>
-            </form>
-            <div class="mt-4 text-center">
-                <a href="/" class="text-purple-600 hover:underline">Back to Home</a>
             </div>
         </div>
+
     </div>
+
+    <script>
+        const page = document.getElementById('page');
+        const backBtn = document.getElementById('backBtn');
+
+        // Slide in from right on page load
+        window.addEventListener('load', () => {
+            page.classList.remove('translate-x-full');
+        });
+
+        // Slide out to right on Back to Home
+        backBtn.addEventListener('click', () => {
+            page.classList.add('translate-x-full');
+            setTimeout(() => {
+                window.location.href = '/';
+            }, 1500); 
+        });
+    </script>
+
 </body>
 </html>
