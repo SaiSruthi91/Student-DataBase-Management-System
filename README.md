@@ -1,171 +1,150 @@
-# 🎙️ Speech Emotion Recognition using KNN 🔬  
-**Full-Stack Speech Emotion Detection using KNN**  
+# 🎓 Student Database Management System 🗃️
+
+**Full-Stack Student Record Management Web Application using Flask, SQLite, and HTML/CSS**
 
 ![License](https://img.shields.io/badge/license-MIT-green.svg)  
 ![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)  
-![React](https://img.shields.io/badge/frontend-React-blue.svg)  
-![Status](https://img.shields.io/badge/status-Completed-brightgreen.svg)  
+![Frontend](https://img.shields.io/badge/frontend-HTML%20%7C%20CSS-blue.svg)  
+![Status](https://img.shields.io/badge/status-Completed-brightgreen.svg)
 
 ---
 
-## 🧠 Project Overview  
+## 🧠 Project Overview
 
-This project implements Speech Emotion Recognition (SER) by classifying human speech into emotional categories such as **Happy**, **Sad**, **Angry**, and **Neutral** using the **K-Nearest Neighbors (KNN)** algorithm.  
+This project is a **Student Database Management System** that allows admin and student users to perform operations like:
 
-The system extracts relevant features from audio signals using **Mel Frequency Cepstral Coefficients (MFCCs)** and applies supervised machine learning for emotion classification. A **React-based frontend** provides an interactive user interface, while a **Python backend** handles model predictions.  
+- Adding student records
+- Viewing dashboards
+- Editing student data
+- Login-based access for students and admins
 
----
-
-## ⚙️ Technologies Used  
-
-### Backend  
-- Python  
-- Librosa (Audio Processing)  
-- NumPy  
-- Scikit-learn (Machine Learning)  
-- Flask (Backend Framework)  
-
-### Frontend  
-- React  
-- HTML & CSS  
-- JavaScript  
+Built using **Python Flask**, this system interacts with an **SQLite database** to manage student information. A clean frontend built with **HTML & CSS** provides an intuitive user experience.
 
 ---
 
-## 📊 Dataset  
+## ⚙️ Technologies Used
 
-The speech emotion recognition model is trained and evaluated using a publicly available dataset from the **University of Toronto's Scholaris platform**, containing labeled speech samples representing different emotional states.  
+### 🖥️ Backend
 
-**Dataset Link:** [Speech Emotion Dataset - Scholaris (University of Toronto)](https://utoronto.scholaris.ca/collections/036db644-9790-4ed0-90cc-be1dfb8a4b66)  
+- Python 3.8+
+- Flask (Web Framework)
+- SQLite3 (Relational Database)
+- Jinja2 (Templating Engine)
 
-The dataset contains audio recordings labeled with emotions such as:  
+### 🎨 Frontend
 
-- Happy  
-- Sad  
-- Angry  
-- Neutral  
-
----
-
-## 📦 Key Components  
-
-- Audio pre-processing and feature extraction  
-- Emotion classification with **K-Nearest Neighbors (KNN)**  
-- REST API for handling predictions  
-- React frontend for uploading audio files and displaying results  
-- Model evaluation with Confusion Matrix and Accuracy Score  
+- HTML5
+- CSS3
+- Basic JavaScript (if needed)
 
 ---
 
-## 📁 Project Structure  
+## 📦 Key Features
+
+✅ Add, Edit, and Delete student records  
+✅ Admin login with dashboard  
+✅ Student login with profile view  
+✅ SQLite-backed data persistence  
+✅ Simple, mobile-responsive HTML/CSS UI  
+✅ Secure password column added via schema update
+
+---
+
+## 📁 Project Structure
 
 ```
 
-├── backend/
-│   ├── data/
-│   ├── venv/
-│   ├── emotion\_classification\_model.pkl
-│   ├── main.py
-│   ├── test.py
-│   └── train.py
-│
-├── frontend/
-│   ├── public/
-│   ├── src/
-│   │   ├── components/
-│   │   ├── App.css
-│   │   ├── App.js
-│   │   ├── App.test.js
-│   │   ├── index.css
-│   │   ├── index.js
-│   │   ├── logo.svg
-│   │   ├── reportWebVitals.js
-│   │   └── setupTests.js
-│   ├── .gitignore
-│   ├── README.md
-│   ├── package.json
-│   └── package-lock.json
-│
-├── uploads/
-└── README.md
+Student-DB-Management/
+├── app.py                         # Main application entry point
+├── requirements.txt               # Required Python packages
+├── README.md                      # Project documentation
 
-```
+├── db/
+│   ├── init\_db.py                 # DB schema setup
+│   ├── add\_password\_column.py     # Script to add password field
+│   └── student\_db.sqlite3         # SQLite database file
+
+├── static/
+│   ├── images/                    # UI image assets (if any)
+│   └── style.css                  # Styling
+
+├── templates/
+│   ├── index.html
+│   ├── admin\_login.html
+│   ├── admin\_dashboard.html
+│   ├── student\_login.html
+│   ├── student\_dashboard.html
+│   ├── add\_student.html
+│   └── edit\_student.html
+
+└── venv/                          # Virtual environment
+
+````
 
 ---
 
-## 🖼️ Screenshots  
+## 🖼️ Screenshots
 
-| Upload Audio                                                                              | Emotion Prediction |  
-|-------------------------------------------------------------------------------------------|-------------------|  
-| ![Output](https://github.com/user-attachments/assets/b36d6602-1a0f-4920-8fa4-de2442934781)| ![Output Results](https://github.com/user-attachments/assets/b977edbf-6a3a-42d2-a0db-8107558897d0)
- |  
+| ![Index Page](https://github.com/user-attachments/assets/aa8b5b61-f0c5-472b-8cbb-b790d25b7b02) | ![Student Login]([screenshots/student_login.png](https://github.com/user-attachments/assets/674ffb32-4288-44ca-b9b6-3d96ada623bb)) | ![Admin Login](https://github.com/user-attachments/assets/45a1bb63-ca87-46f9-a37f-bda760e15779) | ![Add Student](https://github.com/user-attachments/assets/e10a235d-f2b6-4328-bb45-dac61c1e14cf) | ![Admin Dashboard](https://github.com/user-attachments/assets/0387174c-efe5-4308-aa8a-229d17262e29) | ![Student Dashboard](https://github.com/user-attachments/assets/71c4cd96-4a9b-4dff-86d7-812bfa629c7c) |
 
 ---
 
-## 🔍 Features  
+## 🚀 How to Run the Project
 
-✅ Speech emotion detection from audio input  
-✅ Interactive web interface to upload audio files  
-✅ Real-time emotion classification  
-✅ Model built using supervised learning (KNN)  
-✅ Clear project structure separating frontend and backend  
+### 1️⃣ Clone the Repository
 
----
+```bash
+git clone https://github.com/yourusername/Student-DB-Management.git
+cd Student-DB-Management
+````
 
-## 🚀 Future Enhancements  
+### 2️⃣ Set Up Virtual Environment
 
-- Support for additional emotion categories  
-- Real-time microphone input support  
-- Improved model performance with advanced classifiers  
-- Enhanced UI for better user experience  
-
----
-
-## 🛠️ Setup & Installation  
-
-### Backend  
-1. Navigate to `backend/`  
-2. Create virtual environment and activate:  
-```
-
+```bash
 python -m venv venv
-venv\Scripts\activate  # Windows
-source venv/bin/activate  # macOS/Linux
-
-```
-3. Install dependencies:  
+venv\Scripts\activate  # On Windows
+# OR
+source venv/bin/activate  # On macOS/Linux
 ```
 
+### 3️⃣ Install Dependencies
+
+```bash
 pip install -r requirements.txt
-
-```
-4. Run the backend:  
 ```
 
-python main.py
+### 4️⃣ Initialize the Database
 
+```bash
+python db/init_db.py
+python db/add_password_column.py  # Only if needed
 ```
 
-### Frontend  
-1. Navigate to `frontend/`  
-2. Install dependencies:  
+### 5️⃣ Start the Application
+
+```bash
+python app.py
 ```
 
-npm install
+Visit: [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser.
 
-```
-3. Run the frontend:  
-```
+---
 
-npm start
+## 🔍 Future Enhancements
 
-```
+* Password hashing for better security
+* Pagination and search in dashboards
+* Export records to CSV or PDF
+* Add admin user registration
+* Add email-based password reset flow
 
 ---
 
 ## 📬 Contact
 
-**Sai Sruthi Karnatakapu**  
-📧 [k.saisruthi913@gmail.com](mailto:k.saisruthi913@gmail.com)  
+**Sai Sruthi Karnatakapu**
+📧 [k.saisruthi913@gmail.com](mailto:k.saisruthi913@gmail.com)
 🔗 [LinkedIn Profile](https://www.linkedin.com/in/saisruthi-karnatakapu/)
+
+```
 
