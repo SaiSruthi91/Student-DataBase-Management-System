@@ -1,110 +1,202 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Add Student</title>
-    <style>
-        label { display: block; margin-top: 10px; }
-        input[type="text"], input[type="email"], input[type="date"] { width: 400px; padding: 4px; }
-        .section { margin: 20px 0; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h2>Add Student</h2>
-    <form method="POST" enctype="multipart/form-data">
-        <label>Name: <input type="text" name="name" required></label>
-        <label>Email: <input type="email" name="email" required></label>
-        <label>Phone: <input type="text" name="phone" required></label>
-        <label>Hallticket: <input type="text" name="hallticket" required></label>
-        <label>Date of Birth: <input type="date" name="dob" required></label>
-        <label>Address: <input type="text" name="address" required></label>
-        <label>Profile Pic: <input type="file" name="profile_pic" required></label>
+<body class="min-h-screen bg-gray-100 p-8 text-gray-900">
 
-        <label>10th Hallticket: <input type="text" name="tenth_htno"></label>
-        <label>10th Result: <input type="text" name="tenth_result"></label>
-        <label>12th Hallticket: <input type="text" name="twelfth_htno"></label>
-        <label>12th Result: <input type="text" name="twelfth_result"></label>
-        <label>Year: <input type="text" name="year"></label>
-        <label>Branch: <input type="text" name="branch"></label>
-        <label>Date of Joining: <input type="date" name="doj"></label>
+    <div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-300">
 
-        <div class="section">
-            <h3>Semester Results</h3>
-            <label>1-1 GPA: <input type="text" name="sem_1_1"></label>
-            <label>1-2 GPA: <input type="text" name="sem_1_2"></label>
-            <label>2-1 GPA: <input type="text" name="sem_2_1"></label>
-            <label>2-2 GPA: <input type="text" name="sem_2_2"></label>
-            <label>3-1 GPA: <input type="text" name="sem_3_1"></label>
-            <label>3-2 GPA: <input type="text" name="sem_3_2"></label>
-            <label>4-1 GPA: <input type="text" name="sem_4_1"></label>
-            <label>4-2 GPA: <input type="text" name="sem_4_2"></label>
-        </div>
+        <h2 class="text-2xl font-bold mb-6 text-blue-800">Add Student</h2>
 
-        <div class="section">
-            <h3>Subjects (1-1)</h3>
-            <label><input name="s11_1" placeholder="Communicative English"></label>
-            <label><input name="s11_2" placeholder="Mathematics - I"></label>
-            <label><input name="s11_3" placeholder="Applied Physics"></label>
-            <label><input name="s11_4" placeholder="Programming in C"></label>
-            <label><input name="s11_5" placeholder="Engineering Drawing"></label>
-            <label><input name="s11_6" placeholder="English Communication Skills Lab"></label>
-            <label><input name="s11_7" placeholder="C Lab"></label>
-            <label><input name="s11_8" placeholder="Applied Chemistry Lab"></label>
-            <label><input name="s11_9" placeholder="Computer Engineering Workshop"></label>
-        </div>
+        <form method="POST" enctype="multipart/form-data" class="space-y-4">
 
-        <div class="section">
-            <h3>Subjects (1-2)</h3>
-            <label><input name="s12_1" placeholder="Mathematics - II"></label>
-            <label><input name="s12_2" placeholder="Applied Physics"></label>
-            <label><input name="s12_3" placeholder="Data Structures"></label>
-            <label><input name="s12_4" placeholder="Digital Logic Design"></label>
-            <label><input name="s12_5" placeholder="Python Programming"></label>
-            <label><input name="s12_6" placeholder="Data Structures Lab"></label>
-            <label><input name="s12_7" placeholder="Applied Physics Lab"></label>
-            <label><input name="s12_8" placeholder="Python Programming Lab"></label>
-        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="font-semibold text-gray-700">Name</label>
+                    <input type="text" name="name" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">Email</label>
+                    <input type="email" name="email" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">Phone</label>
+                    <input type="text" name="phone" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">Hallticket</label>
+                    <input type="text" name="hallticket" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">Date of Birth</label>
+                    <input type="date" name="dob" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">Address</label>
+                    <input type="text" name="address" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">Profile Pic</label>
+                    <input type="file" name="profile_pic" required class="w-full">
+                </div>
+            </div>
 
-        <div class="section">
-            <h3>Subjects (2-1)</h3>
-            {% for i in range(1, 10) %}
-            <label><input name="s21_{{ i }}" placeholder="Subject {{ i }}"></label>
-            {% endfor %}
-        </div>
+            <hr class="my-6">
 
-        <div class="section">
-            <h3>Subjects (2-2)</h3>
-            {% for i in range(1, 10) %}
-            <label><input name="s22_{{ i }}" placeholder="Subject {{ i }}"></label>
-            {% endfor %}
-        </div>
+            <h3 class="text-lg font-bold mb-2 text-blue-800">Academic Details</h3>
 
-        <div class="section">
-            <h3>Subjects (3-1)</h3>
-            {% for i in range(1, 11) %}
-            <label><input name="s31_{{ i }}" placeholder="Subject {{ i }}"></label>
-            {% endfor %}
-        </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                    <label class="font-semibold text-gray-700">10th Hallticket</label>
+                    <input type="text" name="tenth_htno" class="w-full p-2 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">10th Result</label>
+                    <input type="text" name="tenth_result" class="w-full p-2 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">12th Hallticket</label>
+                    <input type="text" name="twelfth_htno" class="w-full p-2 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">12th Result</label>
+                    <input type="text" name="twelfth_result" class="w-full p-2 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">Year</label>
+                    <input type="text" name="year" class="w-full p-2 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">Branch</label>
+                    <input type="text" name="branch" class="w-full p-2 border border-gray-300 rounded-lg">
+                </div>
+                <div>
+                    <label class="font-semibold text-gray-700">Date of Joining</label>
+                    <input type="date" name="doj" class="w-full p-2 border border-gray-300 rounded-lg">
+                </div>
+            </div>
 
-        <div class="section">
-            <h3>Subjects (3-2)</h3>
-            {% for i in range(1, 11) %}
-            <label><input name="s32_{{ i }}" placeholder="Subject {{ i }}"></label>
-            {% endfor %}
-        </div>
+            <hr class="my-6">
 
-        <div class="section">
-            <h3>Subjects (4-1)</h3>
-            {% for i in range(1, 9) %}
-            <label><input name="s41_{{ i }}" placeholder="Subject {{ i }}"></label>
-            {% endfor %}
-        </div>
+            <h3 class="text-lg font-bold mb-2 text-blue-800">Subjects</h3>
 
-        <div class="section">
-            <h3>Subjects (4-2)</h3>
-            <label><input name="s42_1" placeholder="Major Project & Seminar"></label>
-        </div>
+            <div class="space-y-6">
 
-        <button type="submit">Add Student</button>
-    </form>
+                <div>
+    <h4 class="font-semibold mb-2">1-1 Subjects</h4>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <input name="s11_1" placeholder="Communicative English" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s11_2" placeholder="Mathematics - I" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s11_3" placeholder="Applied Physics" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s11_4" placeholder="Programming for Problem Solving using C" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s11_5" placeholder="Engineering Drawing" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s11_6" placeholder="English Communication Skills Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s11_7" placeholder="Programming for Problem Solving using C Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s11_8" placeholder="Applied Chemistry Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s11_9" placeholder="Computer Engineering Workshop" class="w-full p-2 border border-gray-300 rounded-lg">
+    </div>
+</div>
+
+<div>
+    <h4 class="font-semibold mb-2">1-2 Subjects</h4>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <input name="s12_1" placeholder="Mathematics - II" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s12_2" placeholder="Applied Physics" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s12_3" placeholder="Data Structures" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s12_4" placeholder="Digital Logic Design" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s12_5" placeholder="Python Programming" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s12_6" placeholder="Data Structures Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s12_7" placeholder="Applied Physics Laboratory" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s12_8" placeholder="Python Programming Laboratory" class="w-full p-2 border border-gray-300 rounded-lg">
+    </div>
+</div>
+<div>
+    <h4 class="font-semibold mb-2">2-1 Subjects</h4>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <input name="s21_1" placeholder="Mathematics - III" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s21_2" placeholder="Mathematical Foundations of Computer Science" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s21_3" placeholder="Database Management Systems" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s21_4" placeholder="Object Oriented Programming with Java" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s21_5" placeholder="Indian Traditional Knowledge" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s21_6" placeholder="Database Management Systems Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s21_7" placeholder="Object Oriented Programming with Java Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s21_8" placeholder="Universal Human Values" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s21_9" placeholder="Industrial Internship - 2 Months" class="w-full p-2 border border-gray-300 rounded-lg">
+    </div>
+</div>
+<div>
+    <h4 class="font-semibold mb-2">2-2 Subjects</h4>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <input name="s22_1" placeholder="Probability and Statistics" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s22_2" placeholder="Formal Languages and Automata Theory" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s22_3" placeholder="Managerial Economics and Financial Accountancy" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s22_4" placeholder="Computer Organization" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s22_5" placeholder="Data Warehousing and Mining" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s22_6" placeholder="Java Programming Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s22_7" placeholder="Data Mining using Python Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s22_8" placeholder="Web Application Development using Full Stack" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s22_9" placeholder="Mongo DB" class="w-full p-2 border border-gray-300 rounded-lg">
+    </div>
+</div>
+<div>
+    <h4 class="font-semibold mb-2">3-1 Subjects</h4>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <input name="s31_1" placeholder="Employability Skills - I" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s31_2" placeholder="Research in Operations Research" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s31_3" placeholder="Compiler Design" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s31_4" placeholder="Artificial Intelligence" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s31_5" placeholder="Machine Learning" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s31_6" placeholder="Cloud Computing" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s31_7" placeholder="Artificial Intelligence Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s31_8" placeholder="Machine Learning Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s31_9" placeholder="Skill Oriented Course - III (Data Science using Python)" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s31_10" placeholder="Industrial Internship - 3 Months" class="w-full p-2 border border-gray-300 rounded-lg">
+    </div>
+</div>
+<div>
+    <h4 class="font-semibold mb-2">3-2 Subjects</h4>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <input name="s32_1" placeholder="Employability Skills - II" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s32_2" placeholder="Software Engineering" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s32_3" placeholder="Computer Networks" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s32_4" placeholder="Design and Analysis of Algorithms" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s32_5" placeholder="Software Project Management" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s32_6" placeholder="Deep Learning" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s32_7" placeholder="Skill Oriented Course - IV (Data Analytics using Python)" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s32_8" placeholder="Big Data Analytics Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s32_9" placeholder="Computer Networks Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s32_10" placeholder="Deep Learning and Tensorflow Lab" class="w-full p-2 border border-gray-300 rounded-lg">
+    </div>
+</div>
+<div>
+    <h4 class="font-semibold mb-2">4-1 Subjects</h4>
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+        <input name="s41_1" placeholder="Universal Human Values - 2: Understanding Harmony" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s41_2" placeholder="Internet of Things" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s41_3" placeholder="Microprocessors and Microcontrollers" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s41_4" placeholder="Principles of Communication & IoT Applications" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s41_5" placeholder="Cloud Computing" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s41_6" placeholder="Blockchain Technologies" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s41_7" placeholder="Blockchain with Go (Infosys Spring Board)" class="w-full p-2 border border-gray-300 rounded-lg">
+        <input name="s41_8" placeholder="Industrial Internship - 2 Months" class="w-full p-2 border border-gray-300 rounded-lg">
+    </div>
+</div>
+<div>
+    <h4 class="font-semibold mb-2">4-2 Subjects</h4>
+    <div class="grid grid-cols-1 gap-2">
+        <input name="s42_1" placeholder="Major Project Work & Seminar" class="w-full p-2 border border-gray-300 rounded-lg">
+    </div>
+</div>
+ <div class="mt-6">
+                <button type="submit" class="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-xl">
+                    Add Student
+                </button>
+            </div>
+        </form>
+    </div>
+
 </body>
 </html>

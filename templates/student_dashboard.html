@@ -1,125 +1,135 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Student Dashboard</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
- <style>
-    body {
-        font-family: Arial, sans-serif;
-        padding: 20px;
-        background-color: #eef2f3;
-    }
-    .header {
-        text-align: center;
-        margin-bottom: 20px;
-    }
-    .header h2 {
-        margin: 0;
-        color: #0055a5;
-    }
-    .header h3 {
-        margin-top: 10px; /* Gap between h2 and h3 */
-        color: #0055a5;
-    }
-    .profile-table, .summary-table, table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: white;
-        margin-bottom: 30px;
-    }
-    th, td {
-        border: 1px solid #888;
-        padding: 6px;
-        text-align: center;
-    }
-    .profile-photo {
-        width: 150px;
-        height: 180px;
-        object-fit: cover;
-        border: 1px solid #000;
-    }
-    .logout-btn {
-        float: right;
-        margin-top: -40px;
-    }
-    h3 {
-        margin-top: 40px;
-    }
-    table th {
-        background-color: #ddd;
-    }
-</style>
-
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
+<body class="min-h-screen bg-gray-100 p-8 text-gray-900">
 
-<div class="header">
-    <h2>KAKINADA INSTITUTE OF ENGINEERING & TECHNOLOGY FOR WOMEN</h2>
-    <h3>STUDENT PERSONAL DETAILS</h3>
+<div class="max-w-6xl mx-auto bg-white rounded-2xl shadow-2xl overflow-hidden border border-gray-300 text-gray-900 p-6">
+
+    <!-- Header -->
+    <div class="flex justify-between items-center mb-6">
+        <div>
+            <h2 class="text-2xl font-bold text-purple-700">KAKINADA INSTITUTE OF ENGINEERING & TECHNOLOGY FOR WOMEN</h2>
+            <h3 class="text-lg mt-2 text-purple-600">Student Personal Details</h3>
+        </div>
+        <a href="{{ url_for('logout') }}" class="bg-purple-600 hover:bg-purple-500 text-white font-semibold py-2 px-4 rounded-lg transition">
+            Logout
+        </a>
+    </div>
+
+    <!-- Personal Details Table -->
+   <div class="overflow-x-auto">
+    <table class="min-w-full text-center border border-gray-400 bg-white mb-6">
+        
+        <tr>
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">HTNO</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.hallticket }}</td>
+            
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">Name</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.name }}</td>
+            
+            <td rowspan="6" class="border border-gray-400">
+                <img src="{{ url_for('static', filename='images/' + student['profile_pic']) }}" class="w-36 h-44 object-cover mx-auto">
+            </td>
+        </tr>
+        
+        <tr>
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">Course</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.branch }}</td>
+            
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">Email</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.email }}</td>
+        </tr>
+        
+        <tr>
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">Phone</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.phone }}</td>
+            
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">DOB</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.dob }}</td>
+        </tr>
+        
+        <tr>
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">Address</th>
+            <td colspan="3" class="py-2 px-4 border border-gray-400 text-left">{{ student.address }}</td>
+        </tr>
+        
+        <tr>
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">Joining Date</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.doj }}</td>
+            
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">Year</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.year }}</td>
+        </tr>
+        
+        <tr>
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">X HTNO</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.tenth_htno }}</td>
+            
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">Result</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.tenth_result }}</td>
+        </tr>
+        
+        <tr>
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">XII HTNO</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.twelfth_htno }}</td>
+            
+            <th class="py-2 px-4 border border-gray-400 bg-purple-100">Result</th>
+            <td class="py-2 px-4 border border-gray-400">{{ student.twelfth_result }}</td>
+            
+            <td class="border border-gray-400"></td>
+        </tr>
+    </table>
 </div>
 
-<a href="{{ url_for('logout') }}" class="logout-btn">Logout</a>
 
-<table class="profile-table">
-    <tr><th>HTNO</th><td>{{ student.hallticket }}</td><th>Name</th><td>{{ student.name }}</td><td rowspan="6" style="text-align:center"><img src="{{ url_for('static', filename='images/' + student['profile_pic']) }}" class="profile-photo">
-</td></tr>
-    <tr><th>Course</th><td>{{ student.branch }}</td><th>Email</th><td>{{ student.email }}</td></tr>
-    <tr><th>Phone</th><td>{{ student.phone }}</td><th>DOB</th><td>{{ student.dob }}</td></tr>
-    <tr><th>Address</th><td colspan="3">{{ student.address }}</td></tr>
-    <tr><th>Joining Date</th><td>{{ student.doj }}</td><th>Year</th><td>{{ student.year }}</td></tr>
-    <tr><th>X HTNO</th><td>{{ student.tenth_htno }}</td><th>Result</th><td>{{ student.tenth_result }}</td></tr>
-    <tr><th>XII HTNO</th><td>{{ student.twelfth_htno }}</td><th>Result</th><td>{{ student.twelfth_result }}</td><td></td></tr>
-</table>
+    <!-- Semester Details -->
+   {% macro show_semester(title, subjects, grades) %}
+<h3 class="text-xl font-semibold text-purple-700 mt-8 mb-4">{{ title }}</h3>
 
-{% macro show_semester(title, subjects, grades) %}
-<h3>{{ title }}</h3>
-<table>
-    <tr><th>S.No</th><th>Subject Name</th><th>Grade Point</th></tr>
-    {% for i in range(subjects|length) %}
-    <tr><td>{{ i + 1 }}</td><td>{{ subjects[i] }}</td><td>{{ grades[i] }}</td></tr>
-    {% endfor %}
-</table>
+<div class="overflow-x-auto">
+    <table class="min-w-full text-center border border-gray-400 bg-white mb-6">
+        <thead>
+            <tr>
+                <th class="py-2 px-4 border border-gray-400 bg-purple-100">S.No</th>
+                <th class="py-2 px-4 border border-gray-400 bg-purple-100">Subject Name</th>
+                <th class="py-2 px-4 border border-gray-400 bg-purple-100">Grade Point</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in range(subjects|length) %}
+            <tr>
+                <td class="py-2 px-4 border border-gray-400">{{ i + 1 }}</td>
+                <td class="py-2 px-4 border border-gray-400">{{ subjects[i] }}</td>
+                <td class="py-2 px-4 border border-gray-400">{{ grades[i] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
 {% endmacro %}
 
-{{ show_semester("Semester 1-1",
-    ["Communicative English", "Mathematics - I", "Applied Physics", "C Programming", "Engineering Drawing", "English Communication Skills Lab", "C Programming Lab", "Applied Chemistry Lab", "Computer Engineering Workshop"],
-    [student.s11_1, student.s11_2, student.s11_3, student.s11_4, student.s11_5, student.s11_6, student.s11_7, student.s11_8, student.s11_9]
-) }}
 
-{{ show_semester("Semester 1-2",
-    ["Mathematics - II", "Applied Physics", "Data Structures", "Digital Logic Design", "Python Programming", "Constitution of India", "Applied Physics Lab", "Python Programming Lab"],
-    [student.s12_1, student.s12_2, student.s12_3, student.s12_4, student.s12_5, student.s12_6, student.s12_7, student.s12_8]
-) }}
+    {{ show_semester("Semester 1-1", ["Communicative English", "Mathematics - I", "Applied Physics", "C Programming", "Engineering Drawing", "English Communication Skills Lab", "C Programming Lab", "Applied Chemistry Lab", "Computer Engineering Workshop"], [student.s11_1, student.s11_2, student.s11_3, student.s11_4, student.s11_5, student.s11_6, student.s11_7, student.s11_8, student.s11_9]) }}
 
-{{ show_semester("Semester 2-1",
-    ["Mathematics - III", "Mathematical Foundations of CS", "Database Management Systems", "Object Oriented Programming with Java", "Indian Traditional Knowledge", "DBMS Lab", "OOP Lab", "Universal Human Values - I", "Internship 2 Months"],
-    [student.s21_1, student.s21_2, student.s21_3, student.s21_4, student.s21_5, student.s21_6, student.s21_7, student.s21_8, student.s21_9]
-) }}
+    {{ show_semester("Semester 1-2", ["Mathematics - II", "Applied Physics", "Data Structures", "Digital Logic Design", "Python Programming", "Constitution of India", "Applied Physics Lab", "Python Programming Lab"], [student.s12_1, student.s12_2, student.s12_3, student.s12_4, student.s12_5, student.s12_6, student.s12_7, student.s12_8]) }}
 
-{{ show_semester("Semester 2-2",
-    ["Probability and Statistics", "Formal Languages & Automata Theory", "Managerial Economics & Financial Account", "Computer Organization", "Data Warehousing and Mining", "Programming Lab", "Data Mining using Python Lab", "Web Application Development", "Mongo DB"],
-    [student.s22_1, student.s22_2, student.s22_3, student.s22_4, student.s22_5, student.s22_6, student.s22_7, student.s22_8, student.s22_9]
-) }}
+    {{ show_semester("Semester 2-1", ["Mathematics - III", "Mathematical Foundations of CS", "Database Management Systems", "Object Oriented Programming with Java", "Indian Traditional Knowledge", "DBMS Lab", "OOP Lab", "Universal Human Values - I", "Internship 2 Months"], [student.s21_1, student.s21_2, student.s21_3, student.s21_4, student.s21_5, student.s21_6, student.s21_7, student.s21_8, student.s21_9]) }}
 
-{{ show_semester("Semester 3-1",
-    ["Employability Skills - I", "Optimization in Operations Research", "Compiler Design", "Operating Systems", "Machine Learning", "Software Engineering", "Community Service Project", "Continuous Integration & Continuous Development", "Operating Systems & Compiler Design Lab", "Machine Learning Lab", "Summer Internship 2 Months"],
-    [student.s31_1, student.s31_2, student.s31_3, student.s31_4, student.s31_5, student.s31_6, student.s31_7, student.s31_8, student.s31_9, student.s31_10, student.s31_11]
-) }}
+    {{ show_semester("Semester 2-2", ["Probability and Statistics", "Formal Languages & Automata Theory", "Managerial Economics & Financial Account", "Computer Organization", "Data Warehousing and Mining", "Programming Lab", "Data Mining using Python Lab", "Web Application Development", "Mongo DB"], [student.s22_1, student.s22_2, student.s22_3, student.s22_4, student.s22_5, student.s22_6, student.s22_7, student.s22_8, student.s22_9]) }}
 
-{{ show_semester("Semester 3-2",
-    ["Employability Skills - II", "Design & Analysis of Algorithms", "Computer Networks", "Artificial Intelligence", "Deep Learning", "Project Management", "Big Data Analytics", "CN & AI Lab", "Deep Learning Lab", "Summer Internship"],
-    [student.s32_1, student.s32_2, student.s32_3, student.s32_4, student.s32_5, student.s32_6, student.s32_7, student.s32_8, student.s32_9, student.s32_10]
-) }}
+    {{ show_semester("Semester 3-1", ["Employability Skills - I", "Optimization in Operations Research", "Compiler Design", "Operating Systems", "Machine Learning", "Software Engineering", "Community Service Project", "Continuous Integration & Continuous Development", "Operating Systems & Compiler Design Lab", "Machine Learning Lab", "Summer Internship 2 Months"], [student.s31_1, student.s31_2, student.s31_3, student.s31_4, student.s31_5, student.s31_6, student.s31_7, student.s31_8, student.s31_9, student.s31_10, student.s31_11]) }}
 
-{{ show_semester("Semester 4-1",
-    ["Universal Human Values - II", "Internet of Things", "Microcontrollers and Embedded Systems", "Communication and IoT", "Cloud Computing", "Blockchain Technology", "Go Blockchain Lab", "Summer Internship"],
-    [student.s41_1, student.s41_2, student.s41_3, student.s41_4, student.s41_5, student.s41_6, student.s41_7, student.s41_8]
-) }}
+    {{ show_semester("Semester 3-2", ["Employability Skills - II", "Design & Analysis of Algorithms", "Computer Networks", "Artificial Intelligence", "Deep Learning", "Project Management", "Big Data Analytics", "CN & AI Lab", "Deep Learning Lab", "Summer Internship"], [student.s32_1, student.s32_2, student.s32_3, student.s32_4, student.s32_4, student.s32_5, student.s32_6, student.s32_7, student.s32_8, student.s32_9, student.s32_10]) }}
 
-{{ show_semester("Semester 4-2",
-    ["Major Project & Seminar"],
-    [student.s42_1]
-) }}
+    {{ show_semester("Semester 4-1", ["Universal Human Values - II", "Internet of Things", "Microcontrollers and Embedded Systems", "Communication and IoT", "Cloud Computing", "Blockchain Technology", "Go Blockchain Lab", "Summer Internship"], [student.s41_1, student.s41_2, student.s41_3, student.s41_4, student.s41_5, student.s41_6, student.s41_7, student.s41_8]) }}
+
+    {{ show_semester("Semester 4-2", ["Major Project & Seminar"], [student.s42_1]) }}
+
+</div>
 
 </body>
 </html>

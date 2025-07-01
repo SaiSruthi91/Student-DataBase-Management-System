@@ -1,115 +1,107 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Edit Student</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            padding: 30px;
-            background-color: #f4f4f4;
-        }
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-        input[type="text"],
-        input[type="email"],
-        input[type="date"] {
-            width: 400px;
-            padding: 6px;
-            margin-top: 4px;
-        }
-        .section {
-            background: white;
-            border: 1px solid #ccc;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
-        }
-        h2, h3 {
-            color: #333;
-        }
-        button {
-            padding: 10px 20px;
-            font-size: 16px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        button:hover {
-            background: #0056b3;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <h2>Edit Student</h2>
+<body class="min-h-screen bg-gray-100 p-8 text-gray-900">
 
-    {% set subjects = {
-        's11': ['Communicative English', 'Mathematics - I', 'Applied Physics', 'Programming for Problem Solving using C',
-                'Engineering Drawing', 'English Communication Skills Lab', 'Programming in C Lab', 'Applied Chemistry Lab', 'Computer Engineering Workshop'],
-        's12': ['Mathematics - II', 'Applied Physics', 'Data Structures', 'Digital Logic Design', 'Python Programming',
-                'Data Structures Lab', 'Applied Physics Lab', 'Python Programming Lab'],
-        's21': ['Mathematics - III', 'Mathematical Foundations of CS', 'DBMS', 'OOP with Java', 'Indian Traditional Knowledge',
-                'DBMS Lab', 'Java Lab', 'Universal Human Values', 'Industrial Internship (2 Months)'],
-        's22': ['Probability & Statistics', 'Formal Languages & Automata', 'MEFA', 'Computer Organization', 'Data Warehousing & Mining',
-                'Java Programming Lab', 'Data Mining using Python Lab', 'Web App Dev using Full Stack', 'Mongo DB'],
-        's31': ['Employability Skills - I', 'Research in OR', 'Compiler Design', 'Artificial Intelligence', 'Machine Learning',
-                'Cloud Computing', 'AI Lab', 'ML Lab', 'Data Science using Python (SOC-III)', 'Industrial Internship (3 Months)'],
-        's32': ['Employability Skills - II', 'Software Engineering', 'Computer Networks', 'Design & Analysis of Algorithms',
-                'Software Project Management', 'Deep Learning', 'Data Analytics using Python (SOC-IV)',
-                'Big Data Analytics Lab', 'Computer Networks Lab', 'Deep Learning & TensorFlow Lab'],
-        's41': ['Universal Human Values - II', 'Internet of Things', 'Microprocessors & Microcontrollers',
-                'Comm. Principles & IoT Apps', 'Cloud Computing', 'Blockchain Technologies', 'Blockchain with Go', 'Industrial Internship (2 Months)'],
-        's42': ['Major Project & Seminar']
-    } %}
+<div class="max-w-4xl mx-auto bg-white p-8 rounded-2xl shadow-xl border border-gray-300">
 
-    <form method="POST">
+    <h2 class="text-2xl font-bold mb-6 text-blue-800">Edit Student</h2>
 
-        <div class="section">
-            <h3>Personal Details</h3>
-            <label>Name: <input type="text" name="name" value="{{ student.name }}"></label>
-            <label>Email: <input type="email" name="email" value="{{ student.email }}"></label>
-            <label>Phone: <input type="text" name="phone" value="{{ student.phone }}"></label>
-            <label>Hallticket: <input type="text" name="hallticket" value="{{ student.hallticket }}"></label>
-            <label>Date of Birth: <input type="date" name="dob" value="{{ student.dob }}"></label>
-            <label>Address: <input type="text" name="address" value="{{ student.address }}"></label>
-        </div>
+    <form method="POST" enctype="multipart/form-data" class="space-y-4">
 
-        <div class="section">
-            <h3>Academic Details</h3>
-            <label>10th Hallticket: <input type="text" name="tenth_htno" value="{{ student.tenth_htno }}"></label>
-            <label>10th Result: <input type="text" name="tenth_result" value="{{ student.tenth_result }}"></label>
-            <label>12th Hallticket: <input type="text" name="twelfth_htno" value="{{ student.twelfth_htno }}"></label>
-            <label>12th Result: <input type="text" name="twelfth_result" value="{{ student.twelfth_result }}"></label>
-            <label>Year: <input type="text" name="year" value="{{ student.year }}"></label>
-            <label>Branch: <input type="text" name="branch" value="{{ student.branch }}"></label>
-            <label>Date of Joining: <input type="date" name="doj" value="{{ student.doj }}"></label>
-        </div>
-
-        <div class="section">
-            <h3>Semester Results</h3>
-            {% for sem in ['sem_1_1','sem_1_2','sem_2_1','sem_2_2','sem_3_1','sem_3_2','sem_4_1','sem_4_2'] %}
-                <label>{{ sem }}: <input type="text" name="{{ sem }}" value="{{ student[sem] }}"></label>
-            {% endfor %}
-        </div>
-
-       {% for sem, names in subjects.items() %}
-    {% set sem_code = sem | replace('s', '') %}
-    <div class="section">
-        <h3>Subjects ({{ sem_code[0] }}-{{ sem_code[1:] }})</h3>
-        {% for i in range(0, names | length) %}
-            <div style="margin-top: 10px;">
-                <label>{{ names[i] }}</label>
-                <input type="text" name="{{ sem }}_{{ i+1 }}" value="{{ student[sem ~ '_' ~ (i+1)|string] }}">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="font-semibold text-gray-700">Name</label>
+                <input type="text" name="name" value="{{ student.get('name') }}" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
             </div>
+            <div>
+                <label class="font-semibold text-gray-700">Email</label>
+                <input type="email" name="email" value="{{ student.get('email') }}" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Phone</label>
+                <input type="text" name="phone" value="{{ student.get('phone') }}" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Hallticket</label>
+                <input type="text" name="hallticket" value="{{ student.get('hallticket') }}" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Date of Birth</label>
+                <input type="date" name="dob" value="{{ student.get('dob') }}" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Address</label>
+                <input type="text" name="address" value="{{ student.get('address') }}" required class="w-full p-2 border border-gray-300 rounded-lg focus:outline-blue-500">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Profile Pic</label>
+                <input type="file" name="profile_pic" class="w-full">
+            </div>
+        </div>
+
+        <hr class="my-6">
+
+        <h3 class="text-lg font-bold mb-2 text-blue-800">Academic Details</h3>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+                <label class="font-semibold text-gray-700">10th Hallticket</label>
+                <input type="text" name="tenth_htno" value="{{ student.get('tenth_htno') }}" class="w-full p-2 border border-gray-300 rounded-lg">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">10th Result</label>
+                <input type="text" name="tenth_result" value="{{ student.get('tenth_result') }}" class="w-full p-2 border border-gray-300 rounded-lg">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">12th Hallticket</label>
+                <input type="text" name="twelfth_htno" value="{{ student.get('twelfth_htno') }}" class="w-full p-2 border border-gray-300 rounded-lg">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">12th Result</label>
+                <input type="text" name="twelfth_result" value="{{ student.get('twelfth_result') }}" class="w-full p-2 border border-gray-300 rounded-lg">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Year</label>
+                <input type="text" name="year" value="{{ student.get('year') }}" class="w-full p-2 border border-gray-300 rounded-lg">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Branch</label>
+                <input type="text" name="branch" value="{{ student.get('branch') }}" class="w-full p-2 border border-gray-300 rounded-lg">
+            </div>
+            <div>
+                <label class="font-semibold text-gray-700">Date of Joining</label>
+                <input type="date" name="doj" value="{{ student.get('doj') }}" class="w-full p-2 border border-gray-300 rounded-lg">
+            </div>
+        </div>
+
+        <hr class="my-6">
+
+        <h3 class="text-lg font-bold mb-2 text-blue-800">Subjects</h3>
+
+        {% for sem, names in subjects.items() %}
+        <div class="mb-6">
+            <h4 class="font-semibold mb-2">{{ sem[1] }}-{{ sem[2] }} Subjects</h4>
+            <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                {% for i in range(names | length) %}
+                <input type="text" name="{{ sem }}_{{ i+1 }}" value="{{ student.get(sem ~ '_' ~ (i+1)) if student.get(sem ~ '_' ~ (i+1)) else names[i] }}" placeholder="{{ names[i] }}" class="w-full p-2 border border-gray-300 rounded-lg">
+                {% endfor %}
+            </div>
+        </div>
         {% endfor %}
-    </div>
-{% endfor %}
 
+        <div class="mt-6">
+            <button type="submit" class="bg-blue-800 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded-xl">
+                Update Student
+            </button>
+        </div>
 
-        <button type="submit">Update Student</button>
     </form>
+</div>
+
 </body>
 </html>
