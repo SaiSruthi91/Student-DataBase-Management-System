@@ -85,9 +85,10 @@ Student-DB-Management/
 
 ## 🖼️ Screenshots
 
-| ![Index Page](https://github.com/user-attachments/assets/aa8b5b61-f0c5-472b-8cbb-b790d25b7b02) | ![Student Login](https://github.com/user-attachments/assets/674ffb32-4288-44ca-b9b6-3d96ada623bb) | ![Admin Login](https://github.com/user-attachments/assets/45a1bb63-ca87-46f9-a37f-bda760e15779) | ![Add Student](https://github.com/user-attachments/assets/e10a235d-f2b6-4328-bb45-dac61c1e14cf) | ![Admin Dashboard](https://github.com/user-attachments/assets/0387174c-efe5-4308-aa8a-229d17262e29) | ![Student Dashboard](https://github.com/user-attachments/assets/1257fa41-4b45-432a-a515-2e3cbb6ad554)
+| ![Index Page](https://github.com/user-attachments/assets/aa8b5b61-f0c5-472b-8cbb-b790d25b7b02) | ![Student Login](https://github.com/user-attachments/assets/674ffb32-4288-44ca-b9b6-3d96ada623bb) | ![Admin Login](https://github.com/user-attachments/assets/45a1bb63-ca87-46f9-a37f-bda760e15779) | ![Add Student](https://github.com/user-attachments/assets/84dd17a4-085c-415d-bcb9-d2839055563b) | ![Admin Dashboard](https://github.com/user-attachments/assets/0387174c-efe5-4308-aa8a-229d17262e29) | ![Student Dashboard](https://github.com/user-attachments/assets/1257fa41-4b45-432a-a515-2e3cbb6ad554)
 
 ---
+
 
 ## 🚀 How to Run the Project![2]()
 
