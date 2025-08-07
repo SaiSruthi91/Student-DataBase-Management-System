@@ -146,6 +146,7 @@ Visit: [http://127.0.0.1:5000](http://127.0.0.1:5000) in your browser.
 
 **Sai Sruthi Karnatakapu**
 📧 [k.saisruthi913@gmail.com](mailto:k.saisruthi913@gmail.com)
+
 🔗 [LinkedIn Profile](https://www.linkedin.com/in/saisruthikarnatakapu/)
 
 ```
